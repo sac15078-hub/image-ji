@@ -42,6 +42,7 @@
 
 /*this is newly added .........i can later edit this part or completely remove*/
 /* Dark mode – subtle white hover */
+/*
 [data-theme="dark"] .preview-panel:hover,
 [data-theme="dark"] .comparison-panel:hover,
 [data-theme="dark"] .batch-panel:hover {
@@ -51,6 +52,7 @@
 }
 
 /* Light mode – subtle black hover */
+/*
 [data-theme="light"] .preview-panel:hover,
 [data-theme="light"] .comparison-panel:hover,
 [data-theme="light"] .batch-panel:hover {
@@ -1599,3 +1601,84 @@ select.control {
     transform: none !important;
   }
 }
+
+
+
+/* newly addded from here */
+/* =========================================
+   GLOBAL INVERTED HOVER EFFECT
+   ========================================= */
+
+/* Smooth transitions */
+@media (hover: hover) and (pointer: fine) {
+
+    /* General interactive surfaces */
+    .panel,
+    .card,
+    .upload-card,
+    .preview-panel,
+    .comparison-panel,
+    .compare-box,
+    .result-box,
+    .savings-card,
+    .batch-panel,
+    .settings-panel {
+        transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    /* DARK MODE: WHITE HOVER */
+    [data-theme="dark"] .panel:hover,
+    [data-theme="dark"] .card:hover,
+    [data-theme="dark"] .upload-card:hover,
+    [data-theme="dark"] .preview-panel:hover,
+    [data-theme="dark"] .comparison-panel:hover,
+    [data-theme="dark"] .compare-box:hover,
+    [data-theme="dark"] .result-box:hover,
+    [data-theme="dark"] .savings-card:hover,
+    [data-theme="dark"] .batch-panel:hover,
+    [data-theme="dark"] .settings-panel:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+    }
+
+    /* LIGHT MODE: BLACK HOVER */
+    [data-theme="light"] .panel:hover,
+    [data-theme="light"] .card:hover,
+    [data-theme="light"] .upload-card:hover,
+    [data-theme="light"] .preview-panel:hover,
+    [data-theme="light"] .comparison-panel:hover,
+    [data-theme="light"] .compare-box:hover,
+    [data-theme="light"] .result-box:hover,
+    [data-theme="light"] .savings-card:hover,
+    [data-theme="light"] .batch-panel:hover,
+    [data-theme="light"] .settings-panel:hover {
+        background-color: rgba(0, 0, 0, 0.07);
+        border-color: rgba(0, 0, 0, 0.35);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+}
+
+/* Accessibility: respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .panel,
+    .card,
+    .upload-card,
+    .preview-panel,
+    .comparison-panel,
+    .compare-box,
+    .result-box,
+    .savings-card,
+    .batch-panel,
+    .settings-panel {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+/*to here*/
