@@ -1300,7 +1300,7 @@ select.control {
     circle 180px at var(--pointer-x) var(--pointer-y),
     rgba(59, 130, 246, 1) 0%,
     rgba(139, 92, 246, 0.68) 45%,
-    transparent 100%
+    transparent 85%
   ); 
 /*
   linear-gradient(to right, rgba(124, 133, 157, 0.12) 1px, transparent 1px),
