@@ -151,6 +151,70 @@ button {
   margin: 2px 0;
 }
 
+
+/* Premium sidebar navigation hover effect */
+.nav-item {
+    position: relative;
+    overflow: hidden;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Purple gradient background */
+.nav-item:hover {
+    background: linear-gradient(
+        110deg,
+        rgba(139, 92, 246, 0.20),
+        rgba(99, 102, 241, 0.08)
+    );
+    color: #c4b5fd;
+    transform: translateX(4px);
+    box-shadow: 0 3px 15px rgba(139, 92, 246, 0.12);
+}
+
+/* Animated left indicator */
+.nav-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 3px;
+    border-radius: 4px;
+    background: #a78bfa;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::before {
+    transform: scaleY(1);
+}
+
+/* Icon animation */
+.nav-item svg,
+.nav-item i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover svg,
+.nav-item:hover i {
+    transform: scale(1.13);
+    color: #a78bfa;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .nav-item,
+    .nav-item svg,
+    .nav-item i,
+    .nav-item::before {
+        transition: none !important;
+    }
+}
+
 .nav-item > span:first-child {
   font-size: 19px;
   width: 19px;
