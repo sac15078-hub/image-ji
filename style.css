@@ -235,14 +235,14 @@ button {
   z-index: 1;
   max-width: 1600px;
   margin-left: 244px;
-  padding: 37px 4.2vw 20px;
+  padding: 26px 4.2vw 20px;
 }
 
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 .eyebrow {
