@@ -1,14 +1,16 @@
 /* ============================================================
    1. THEME COLORS AND DESIGN TOKENS
    ============================================================ */
-
 :root {
+  color-scheme: light;
   --bg: #f4f6fa;
   --surface: #fff;
   --surface-2: #f8f9fc;
   --text: #172033;
   --muted: #7b8497;
   --line: #e8ebf2;
+  --upload-border: #c8c9ee;
+  --check-border: #c8ccda;
   --accent: #635bff;
   --accent-2: #817bff;
   --accent-soft: #f0efff;
@@ -21,12 +23,15 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg: #101522;
   --surface: #171e2d;
   --surface-2: #1d2637;
   --text: #edf1fb;
   --muted: #9aa6bb;
   --line: #2b3548;
+  --upload-border: #3a4563;
+  --check-border: #4b5877;
   --accent: #8b83ff;
   --accent-2: #aaa4ff;
   --accent-soft: #292747;
@@ -34,7 +39,6 @@
   --warn: #f59e0b;
   --shadow: 0 10px 35px rgba(0, 0, 0, .18);
 }
-
 /* ============================================================
    2. GLOBAL RESET AND BASE ELEMENTS
    ============================================================ */
@@ -329,7 +333,7 @@ button {
 
 .upload-card {
   min-height: 112px;
-  border: 1.5px dashed #c8c9ee;
+  border: 1.5px dashed var(--upload-border);
   background: var(--surface);
   border-radius: var(--radius);
   display: flex;
@@ -844,7 +848,7 @@ select.control {
 .custom-check {
   width: 15px;
   height: 15px;
-  border: 1px solid #c8ccda;
+  border: 1px solid var(--check-border);
   border-radius: 4px;
   background: var(--surface);
   display: inline-grid;
