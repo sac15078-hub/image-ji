@@ -1298,8 +1298,8 @@ select.control {
   background-position: 0 0;
   -webkit-mask-image: radial-gradient(
     circle 180px at var(--pointer-x) var(--pointer-y),
-    rgba(59, 130, 246, 0.25),
-    rgba(139, 92, 246, 0.15) 45%,
+    rgba(59, 130, 246, 1) 0%,
+    rgba(139, 92, 246, 0.68) 45%,
     transparent 100%
   ); 
 /*
