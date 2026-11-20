@@ -39,6 +39,27 @@
   --warn: #f59e0b;
   --shadow: 0 10px 35px rgba(0, 0, 0, .18);
 }
+
+/*this is newly added .........i can later edit this part or completely remove*/
+/* Dark mode – subtle white hover */
+[data-theme="dark"] .preview-panel:hover,
+[data-theme="dark"] .comparison-panel:hover,
+[data-theme="dark"] .batch-panel:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Light mode – subtle black hover */
+[data-theme="light"] .preview-panel:hover,
+[data-theme="light"] .comparison-panel:hover,
+[data-theme="light"] .batch-panel:hover {
+    background: rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+/* till here  */
+
 /* ============================================================
    2. GLOBAL RESET AND BASE ELEMENTS
    ============================================================ */
