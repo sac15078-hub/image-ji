@@ -407,6 +407,10 @@
     els.fileCount.textContent = state.files.length;
     els.downloadAll.disabled =
       !state.files.some((f) => f.processedBlob) || state.processing;
+    
+    els.process.disabled = !current || state.processing;
+    els.processAll.disabled =
+      !state.files.length || state.processing;
 
     const current = selected();
     els.downloadSelected.disabled =
