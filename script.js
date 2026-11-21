@@ -403,6 +403,7 @@
   }
 
   function renderQueue() {
+    const current = selected();
     els.queueCount.textContent = state.files.length;
     els.fileCount.textContent = state.files.length;
     els.downloadAll.disabled =
@@ -412,7 +413,7 @@
     els.processAll.disabled =
       !state.files.length || state.processing;
 
-    const current = selected();
+    
     els.downloadSelected.disabled =
       !current || !current.processedBlob || state.processing;
 
