@@ -1145,6 +1145,7 @@ function initPointerSpotlight() {
 }
 
   /* till here 8*/
+  /*
     function hideSpotlight() {
       spotlight.classList.remove("is-visible");
       isVisible = false;
@@ -1168,7 +1169,7 @@ function initPointerSpotlight() {
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) hideSpotlight();
     });
-  }
+  } */
 
   function init() {
     setTheme(localStorage.getItem("pro-resizer-theme") || "light");
