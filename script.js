@@ -975,6 +975,7 @@
     });
   }
 
+  /*
   function initPointerSpotlight() {
     const spotlight = $("pointerGrid");
     if (!spotlight) return;
@@ -991,7 +992,159 @@
         isVisible = true;
       }
     }
+*/
+  /* from here */
+    
+function initPointerSpotlight() {
+  const container = $("pointerGrid");
+  if (!container) return;
 
+  const finePointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  if (!finePointer.matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  container.appendChild(canvas);
+
+  const spacing = 34;
+  const dots = [];
+
+  let width = 0;
+  let height = 0;
+  let pointerX = -1000;
+  let pointerY = -1000;
+  let active = false;
+  let animationFrame;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    dots.length = 0;
+
+    const cols = Math.ceil(width / spacing);
+    const rows = Math.ceil(height / spacing);
+
+    for (let y = 0; y <= rows; y++) {
+      for (let x = 0; x <= cols; x++) {
+        const seed = Math.sin(
+          x * 127.1 + y * 311.7
+        ) * 43758.5453;
+
+        const random = seed - Math.floor(seed);
+
+        dots.push({
+          x: x * spacing + spacing / 2,
+          y: y * spacing + spacing / 2,
+          size: 1.2 + random * 2.5,
+          phase: random * Math.PI * 2,
+          speed: 1.5 + random * 1.2
+        });
+      }
+    }
+  }
+
+  function animate(time) {
+    ctx.clearRect(0, 0, width, height);
+
+    const t = time * 0.001;
+
+    dots.forEach(dot => {
+      const dx = dot.x - pointerX;
+      const dy = dot.y - pointerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      const influence = active
+        ? Math.max(0, 1 - distance / 190)
+        : 0;
+
+      // Ambient continuous pulse
+      const ambient =
+        0.5 + 0.5 * Math.sin(
+          t * dot.speed + dot.phase
+        );
+
+      // Pointer-reactive ripple pulse
+      const ripple =
+        influence * (
+          0.5 + 0.5 * Math.sin(
+            t * 5 - distance * 0.035 + dot.phase
+          )
+        );
+
+      const scale = 0.7 + ambient * 0.3 + ripple * 1.15;
+      const radius = dot.size * scale;
+
+      const alpha = Math.min(
+        0.85,
+        0.12 + ambient * 0.12 + influence * 0.65
+      );
+
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+
+      ctx.fillStyle = `rgba(110, 100, 255, ${alpha})`;
+      ctx.shadowBlur = influence * 12;
+      ctx.shadowColor = "rgba(110, 100, 255, 0.65)";
+      ctx.fill();
+    });
+
+    ctx.shadowBlur = 0;
+
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("pointermove", event => {
+    if (event.pointerType === "touch") return;
+
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    active = true;
+
+    container.classList.add("is-visible");
+  }, { passive: true });
+
+  window.addEventListener("mouseout", event => {
+    if (!event.relatedTarget && !event.toElement) {
+      active = false;
+      container.classList.remove("is-visible");
+    }
+  });
+
+  window.addEventListener("blur", () => {
+    active = false;
+    container.classList.remove("is-visible");
+  });
+
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationFrame);
+    } else {
+      animationFrame = requestAnimationFrame(animate);
+    }
+  });
+
+  resize();
+  animationFrame = requestAnimationFrame(animate);
+}
+
+  /* till here 8*/
     function hideSpotlight() {
       spotlight.classList.remove("is-visible");
       isVisible = false;
