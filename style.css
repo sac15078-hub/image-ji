@@ -1290,6 +1290,8 @@ select.control {
   z-index: 0;
   pointer-events: none;
   opacity: 0;
+  overflow: hidden;
+  transition: opacity .3s ease;
   background-image:
      
     linear-gradient(to right, rgba(124, 133, 157, 0.22) 1px, transparent 1px),
